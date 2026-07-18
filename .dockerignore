@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+.env
+.git/
+*.pdf
+test_pdf_gen.py

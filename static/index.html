@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+    
+    <main class="container">
+        <header>
+            <h1>Resume<span class="highlight">Analyzer</span></h1>
+            <p>AI-powered evaluation against corporate demands</p>
+        </header>
+
+        <section class="card input-section">
+            <form id="analyze-form">
+                <div class="form-group">
+                    <label for="job_description">Job Description</label>
+                    <textarea id="job_description" name="job_description" rows="5" placeholder="Paste the exact corporate demands and job requirements here..." required></textarea>
+                </div>
+                
+                <div class="form-group file-upload-group">
+                    <label for="file">Candidate Resume (PDF)</label>
+                    <div class="file-drop-area">
+                        <span class="file-msg">Drag & drop or click to upload PDF</span>
+                        <input type="file" id="file" name="file" accept=".pdf" required>
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn">
+                    <span class="btn-text">Analyze Candidate</span>
+                    <div class="spinner hidden"></div>
+                </button>
+            </form>
+        </section>
+
+        <section id="results-section" class="card results-section hidden">
+            <h2>Evaluation Results</h2>
+            
+            <div class="score-container">
+                <div class="score-circle">
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg"
+                        d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path class="circle" id="score-circle-path"
+                        stroke-dasharray="0, 100"
+                        d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <text x="18" y="20.35" class="percentage" id="score-text">0%</text>
+                    </svg>
+                </div>
+                <div class="score-details">
+                    <h3>Match Score</h3>
+                    <p>Experience: <span id="exp-text" class="highlight-text">0 years</span></p>
+                </div>
+            </div>
+
+            <div class="skills-container">
+                <h3>Identified Skills</h3>
+                <div class="tags" id="skills-tags">
+                    <!-- Skills will be injected here -->
+                </div>
+            </div>
+
+            <div class="missing-container">
+                <h3>Missing Requirements</h3>
+                <ul class="missing-list" id="missing-list">
+                    <!-- Missing reqs will be injected here -->
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
