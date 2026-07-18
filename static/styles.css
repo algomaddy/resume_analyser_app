@@ -126,6 +126,8 @@ label {
     color: var(--text-secondary);
 }
 
+input[type="text"],
+input[type="password"],
 textarea {
     width: 100%;
     background: rgba(15, 23, 42, 0.6);
@@ -135,10 +137,15 @@ textarea {
     padding: 1rem;
     font-family: inherit;
     font-size: 1rem;
-    resize: vertical;
     transition: all 0.3s ease;
 }
 
+textarea {
+    resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
 textarea:focus {
     outline: none;
     border-color: var(--accent);

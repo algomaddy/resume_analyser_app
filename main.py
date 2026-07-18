@@ -16,11 +16,12 @@ class CandidateEvaluation(BaseModel):
     missing_requirements: list[str] = Field(description="List of critical demands from the JD that are not on the resume")
 
 import os
-# Initialize google-genai client
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY", "dummy_key"))
+# Initialize google-genai client dynamically per request now
+# client = genai.Client(...) is removed from global scope
 
 @app.post("/analyze-resume")
 async def analyze_resume(
+    api_key: str = Form(...),
     job_description: str = Form(...),
     file: UploadFile = File(...)
 ):
@@ -42,6 +43,9 @@ async def analyze_resume(
     prompt = f"Evaluate this candidate's resume against the specific corporate demands listed in the job description.\n\nJob Description:\n{job_description}\n\nCandidate Resume:\n{resume_text}"
 
     try:
+        # Instantiate client with user-provided key
+        client = genai.Client(api_key=api_key)
+        
         response = client.models.generate_content(
             model='gemini-2.5-flash',
             contents=prompt,
